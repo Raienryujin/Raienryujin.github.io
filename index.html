@@ -6,10 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nishan Rowjee | Portfolio</title>
 
-    <!-- SEO Meta Tags -->
+    <!-- SEO & Open Graph (OG) Meta Tags -->
     <meta name="description"
-        content="Portfolio of Nishan Rowjee, showcasing high-performance web applications, engineering solutions, and digital products.">
+        content="Portfolio of Nishan Rowjee, showcasing high-performance REST APIs, scalable data pipelines, and optimized backend architectures.">
     <meta name="author" content="Nishan Rowjee">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nrowjee.me/">
+    <meta property="og:title" content="Nishan Rowjee | Backend Software Engineer">
+    <meta property="og:description"
+        content="Specialized in clean code principles, high-performance REST APIs, scalable data pipelines, and optimized backend infrastructures.">
+    <meta property="og:image" content="https://nrowjee.me/assets/img/metadata-preview.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Nishan Rowjee | Backend Software Engineer">
+    <meta property="twitter:description"
+        content="Specialized in clean code, scalable data systems, and DevOps engineering.">
 
     <!-- Google Fonts: Outfit (Headings) and Inter (Body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -46,6 +60,9 @@
                         <a class="nav-link active" href="#about">About</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="#skills">Skills</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="#projects">Projects</a>
                     </li>
                     <li class="nav-item">
@@ -73,29 +90,92 @@
 
                     <!-- Headline -->
                     <h1 class="hero-title text-white">
-                        Crafting High-Performance <br>
-                        <span class="text-gradient">Web Engineering Solutions</span>
+                        Building Modern REST APIs, Scalable Pipelines, & <br>
+                        <span class="text-gradient">Optimized Backend Architectures</span>
                     </h1>
 
                     <!-- Sub-text -->
                     <p class="hero-lead">
-                        I am a full-stack developer dedicated to building premium digital experiences that are
-                        lightning-fast, highly scalable, and visually exceptional. Let's build something remarkable.
+                        Full-stack software engineer specialized in clean code principles, testable architectures, and
+                        high-performance server systems. I design resilient data pipelines and robust backend
+                        infrastructures engineered for scale and speed.
                     </p>
 
                     <!-- Call To Action Buttons -->
                     <div class="d-flex flex-wrap gap-3">
                         <a href="#projects" class="btn btn-primary-custom glow-on-hover">
-                            View My Work <i class="bi bi-arrow-right ms-2"></i>
+                            Explore Projects <i class="bi bi-arrow-right ms-2"></i>
                         </a>
                         <a href="#contact" class="btn btn-secondary-custom">
-                            Let's Connect
+                            Get in Touch
                         </a>
                     </div>
                 </div>
             </div>
         </div>
     </header>
+
+    <!-- 2.5 CORE TECHNICAL SKILLS SECTION -->
+    <section class="py-5" id="skills">
+        <div class="container py-4">
+            <div class="row section-title-area text-center text-md-start">
+                <div class="col-lg-6">
+                    <span class="section-subtitle">Competencies</span>
+                    <h2 class="text-white fs-1">Technical Skills</h2>
+                    <p class="text-secondary mt-2">A breakdown of domains, frameworks, and database architectures
+                        engineered to optimize software.</p>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <!-- Skill Category 1 -->
+                <div class="col-md-4">
+                    <div class="skills-category-card">
+                        <i class="bi bi-cpu skills-icon"></i>
+                        <h3 class="text-white fs-4 mb-3">Backend Engineering</h3>
+                        <div class="skills-grid">
+                            <span class="skill-tag">SQL Server</span>
+                            <span class="skill-tag">C#</span>
+                            <span class="skill-tag">ASP.NET Core</span>
+                            <span class="skill-tag">Dapper</span>
+                            <span class="skill-tag">REST APIs</span>
+                            <span class="skill-tag">EF Core</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Skill Category 2 -->
+                <div class="col-md-4">
+                    <div class="skills-category-card">
+                        <i class="bi bi-cloud-arrow-up-fill skills-icon"></i>
+                        <h3 class="text-white fs-4 mb-3">DevOps &amp; Security</h3>
+                        <div class="skills-grid">
+                            <span class="skill-tag">GitHub Actions</span>
+                            <span class="skill-tag">Shell Scripting</span>
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">Security TLS</span>
+                            <span class="skill-tag">Linux / Unix</span>
+                            <span class="skill-tag">CI/CD Pipelines</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Skill Category 3 -->
+                <div class="col-md-4">
+                    <div class="skills-category-card">
+                        <i class="bi bi-diagram-3-fill skills-icon"></i>
+                        <h3 class="text-white fs-4 mb-3">Data Architecture</h3>
+                        <div class="skills-grid">
+                            <span class="skill-tag">ETL Pipelines</span>
+                            <span class="skill-tag">Star Schema</span>
+                            <span class="skill-tag">Query Tuning</span>
+                            <span class="skill-tag">Aggregations</span>
+                            <span class="skill-tag">Indexing</span>
+                            <span class="skill-tag">Data Warehouses</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- 3. PROJECTS GRID SECTION -->
     <section class="py-5" id="projects">
@@ -117,23 +197,24 @@
                 <div class="col">
                     <article class="glass-card">
                         <div class="card-img-wrapper">
-                            <span class="card-badge">Web Application</span>
-                            <i class="bi bi-cpu project-icon"></i>
+                            <span class="card-badge">Data Warehousing & Query Optimization</span>
+                            <i class="bi bi-database project-icon"></i>
                         </div>
                         <div class="card-body">
-                            <h3 class="card-title">Aether AI Workspace</h3>
+                            <h3 class="card-title">Modernized Star-Schema ETL Pipeline</h3>
                             <p class="card-text">
-                                A dynamic, interactive agentic workbench that integrates NLP models and real-time
-                                processing pipelines to automate complex workflows.
+                                Engineered a high-capacity data ingestion pipeline transforming relational records into
+                                optimized star-schema designs for lightning-fast business intelligence operations.
                             </p>
                             <div class="tech-tags">
-                                <span class="tech-pill">React</span>
-                                <span class="tech-pill">FastAPI</span>
-                                <span class="tech-pill">OpenAI API</span>
+                                <span class="tech-pill">SQL Server</span>
+                                <span class="tech-pill">C#</span>
+                                <span class="tech-pill">Data Pipelines</span>
                             </div>
                             <div>
-                                <a href="#" class="card-link" aria-label="View Aether AI Workspace project details">
-                                    Explore Project <i class="bi bi-arrow-up-right"></i>
+                                <a href="#" class="card-link" data-bs-toggle="modal" data-bs-target="#starSchemaModal"
+                                    role="button" aria-label="View Modernized Star-Schema ETL Pipeline case study">
+                                    View Case Study <i class="bi bi-arrow-up-right"></i>
                                 </a>
                             </div>
                         </div>
@@ -144,23 +225,24 @@
                 <div class="col">
                     <article class="glass-card">
                         <div class="card-img-wrapper">
-                            <span class="card-badge">E-Commerce</span>
-                            <i class="bi bi-bag-check project-icon"></i>
+                            <span class="card-badge">High-Throughput Data Endpoints</span>
+                            <i class="bi bi-bezier2 project-icon"></i>
                         </div>
                         <div class="card-body">
-                            <h3 class="card-title">Centauri Storefront</h3>
+                            <h3 class="card-title">RESTful BI Core API</h3>
                             <p class="card-text">
-                                A next-generation high-conversion headless storefront built with serverless
-                                architecture, micro-frontends, and sub-second load times.
+                                Built a highly concurrent, ultra-low-latency backend interface delivering real-time
+                                aggregations and optimized relational data layers.
                             </p>
                             <div class="tech-tags">
-                                <span class="tech-pill">Next.js</span>
-                                <span class="tech-pill">Stripe</span>
-                                <span class="tech-pill">Tailwind CSS</span>
+                                <span class="tech-pill">ASP.NET Core</span>
+                                <span class="tech-pill">Dapper</span>
+                                <span class="tech-pill">REST Architecture</span>
                             </div>
                             <div>
-                                <a href="#" class="card-link" aria-label="View Centauri Storefront project details">
-                                    Explore Project <i class="bi bi-arrow-up-right"></i>
+                                <a href="#" class="card-link" data-bs-toggle="modal" data-bs-target="#biApiModal"
+                                    role="button" aria-label="View RESTful BI Core API case study">
+                                    View Case Study <i class="bi bi-arrow-up-right"></i>
                                 </a>
                             </div>
                         </div>
@@ -171,23 +253,24 @@
                 <div class="col">
                     <article class="glass-card">
                         <div class="card-img-wrapper">
-                            <span class="card-badge">Data Systems</span>
-                            <i class="bi bi-database-gear project-icon"></i>
+                            <span class="card-badge">DevOps & Cloud Orchestration</span>
+                            <i class="bi bi-shield-check project-icon"></i>
                         </div>
                         <div class="card-body">
-                            <h3 class="card-title">Titan Analytics Engine</h3>
+                            <h3 class="card-title">Automated CI/CD Deployment Engine</h3>
                             <p class="card-text">
-                                High-throughput real-time data ingestion and processing pipeline designed to handle
-                                millions of transactions with visual dashboard metrics.
+                                Designed and implemented secure containerized integration workflows, automating linting,
+                                security audits, and zero-downtime production deployment releases.
                             </p>
                             <div class="tech-tags">
-                                <span class="tech-pill">Go</span>
-                                <span class="tech-pill">Python</span>
-                                <span class="tech-pill">Apache Kafka</span>
+                                <span class="tech-pill">GitHub Actions</span>
+                                <span class="tech-pill">Shell Scripting</span>
+                                <span class="tech-pill">Security Protocols</span>
                             </div>
                             <div>
-                                <a href="#" class="card-link" aria-label="View Titan Analytics Engine project details">
-                                    Explore Project <i class="bi bi-arrow-up-right"></i>
+                                <a href="#" class="card-link" data-bs-toggle="modal" data-bs-target="#cicdModal"
+                                    role="button" aria-label="View Automated CI/CD Deployment Engine case study">
+                                    View Case Study <i class="bi bi-arrow-up-right"></i>
                                 </a>
                             </div>
                         </div>
@@ -199,54 +282,181 @@
     </section>
 
     <!-- 4. CONTACT & FOOTER SECTION -->
-    <footer class="contact-section" id="contact">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <!-- CTA Card Wrapper -->
-                    <div class="contact-card">
-                        <span class="section-subtitle">Let's Connect</span>
-                        <h2 class="text-white fs-1 mb-3">Start a Conversation</h2>
-                        <p class="text-secondary mx-auto mb-4" style="max-width: 500px;">
-                            Have an exciting project or opportunity you want to collaborate on? I'm always open to
-                            discussing new engineering challenges.
-                        </p>
-
-                        <!-- Contact Action Button -->
-                        <a href="mailto:nishan.rowjee@example.com"
-                            class="btn btn-primary-custom glow-on-hover px-4 py-3">
-                            <i class="bi bi-envelope-fill me-2"></i> Send an Email
-                        </a>
-
-                        <!-- Social Link Placeholders -->
-                        <div class="social-links">
-                            <a href="https://github.com/Raienryujin" target="_blank" rel="noopener noreferrer"
-                                class="social-btn github" aria-label="GitHub Profile">
-                                <i class="bi bi-github"></i>
-                            </a>
-                            <a href="https://linkedin.com/in/nishanrowjee" target="_blank" rel="noopener noreferrer"
-                                class="social-btn linkedin" aria-label="LinkedIn Profile">
-                                <i class="bi bi-linkedin"></i>
-                            </a>
-                            <a href="mailto:nishan.rowjee@example.com" class="social-btn email" aria-label="Email Link">
-                                <i class="bi bi-envelope"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Footer Signature and Info -->
-            <div class="row">
-                <div class="col text-center">
-                    <div class="footer-divider"></div>
-                    <p class="footer-text mb-0">&copy; 2026 Nishan Rowjee. All rights reserved.</p>
-                    <p class="footer-text mt-1" style="font-size: 0.75rem; opacity: 0.6;">Designed with passion using
-                        HTML5, modular CSS, &amp; Bootstrap 5.</p>
-                </div>
+    <hr class="border-secondary opacity-25 m-0">
+    <footer class="py-5 text-white" id="contact" style="background-color: #212529 !important;">
+        <div class="container text-center">
+            <p class="text-light opacity-75 mb-3">
+                &copy; | 2026 nrowjee.me |
+            </p>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="https://github.com/Raienryujin" target="_blank" rel="noopener noreferrer"
+                    class="text-light text-decoration-none link-secondary">
+                    <i class="bi bi-github me-1"></i> GitHub
+                </a>
+                <span class="text-secondary opacity-50">|</span>
+                <a href="#" class="text-light text-decoration-none link-secondary">
+                    <i class="bi bi-linkedin me-1"></i> LinkedIn
+                </a>
             </div>
         </div>
     </footer>
+
+    <!-- CASE STUDY MODALS -->
+    <!-- CASE STUDY MODAL 1 -->
+    <div class="modal fade glass-modal" id="starSchemaModal" tabindex="-1" aria-labelledby="starSchemaModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title fs-4 text-white" id="starSchemaModalLabel">Case Study: Modernized Star-Schema
+                        ETL Pipeline</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="modal-detail-card">
+                                <h3 class="modal-section-title">The Challenge</h3>
+                                <p class="text-secondary small mb-0">
+                                    The client's daily analytical jobs were running for 6+ hours due to un-indexed
+                                    relational queries, complex nested loops, and unstructured dimensional tables.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="modal-detail-card">
+                                <h3 class="modal-section-title">The Solution</h3>
+                                <p class="text-secondary small mb-0">
+                                    Designed a multi-stage ETL ingestion engine in C# to transform operational stores
+                                    into optimized star-schema warehouses. Applied smart columnstore indexing.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="modal-detail-card">
+                                <h3 class="modal-section-title">Key Architecture &amp; Metrics</h3>
+                                <ul class="text-secondary small mb-0">
+                                    <li><strong>Query Latency reduced by 94%</strong> (analytical lookups down from
+                                        minutes to sub-seconds).</li>
+                                    <li><strong>Robust Data integrity</strong> using strict transactional staging layers
+                                        and C# auditing handlers.</li>
+                                    <li>Utilized bulk-loading batches processing over <strong>5,000,000 records
+                                            daily</strong>.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary-custom btn-sm" data-bs-dismiss="modal">Close
+                        Project</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CASE STUDY MODAL 2 -->
+    <div class="modal fade glass-modal" id="biApiModal" tabindex="-1" aria-labelledby="biApiModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title fs-4 text-white" id="biApiModalLabel">Case Study: RESTful BI Core API</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="modal-detail-card">
+                                <h3 class="modal-section-title">The Challenge</h3>
+                                <p class="text-secondary small mb-0">
+                                    Analytical endpoints faced latency bottlenecks under high concurrent loads, stalling
+                                    the Business Intelligence dashboards during market hours.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="modal-detail-card">
+                                <h3 class="modal-section-title">The Solution</h3>
+                                <p class="text-secondary small mb-0">
+                                    Implemented a high-throughput API gateway with ASP.NET Core and Dapper. Deployed
+                                    custom connection pooling and localized memory caches.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="modal-detail-card">
+                                <h3 class="modal-section-title">Key Architecture &amp; Metrics</h3>
+                                <ul class="text-secondary small mb-0">
+                                    <li><strong>Response times &lt; 50ms</strong> on complex aggregate reports.</li>
+                                    <li>Sustained peak loads of <strong>8,000 requests per second</strong> with zero
+                                        thread exhaustion.</li>
+                                    <li>Minimized database memory footprint using Dapper's lightweight mapper pipelines.
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary-custom btn-sm" data-bs-dismiss="modal">Close
+                        Project</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CASE STUDY MODAL 3 -->
+    <div class="modal fade glass-modal" id="cicdModal" tabindex="-1" aria-labelledby="cicdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title fs-4 text-white" id="cicdModalLabel">Case Study: Automated CI/CD Deployment
+                        Engine</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="modal-detail-card">
+                                <h3 class="modal-section-title">The Challenge</h3>
+                                <p class="text-secondary small mb-0">
+                                    Manual release procedures delayed staging deployments, leading to integration
+                                    conflicts, security exposure, and deployment downtime.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="modal-detail-card">
+                                <h3 class="modal-section-title">The Solution</h3>
+                                <p class="text-secondary small mb-0">
+                                    Orchestrated a secure cloud-native deployment platform utilizing GitHub Actions
+                                    workflows, containerized Docker builds, and custom bash validation scripts.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="modal-detail-card">
+                                <h3 class="modal-section-title">Key Architecture &amp; Metrics</h3>
+                                <ul class="text-secondary small mb-0">
+                                    <li>Achieved **100% automated blue-green releases** with zero active deployment
+                                        downtime.</li>
+                                    <li>Integrated compliance verification scripts auditing for **TLS 1.3 and security
+                                        header configurations**.</li>
+                                    <li>Reduced time-to-production from **45 minutes to under 4 minutes**.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary-custom btn-sm" data-bs-dismiss="modal">Close
+                        Project</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Bootstrap 5 Bundle JS (includes Popper) CDN -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

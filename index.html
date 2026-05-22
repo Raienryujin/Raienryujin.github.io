@@ -66,6 +66,9 @@
                         <a class="nav-link" href="#projects">Projects</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="#blog">DevLog</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="#contact">Contact</a>
                     </li>
                 </ul>
@@ -281,6 +284,24 @@
         </div>
     </section>
 
+    <!-- 3.5 DEVELOPER BLOG SECTION -->
+    <section class="py-5" id="blog" style="background-color: #0f131f;">
+        <div class="container py-4">
+            <div class="row section-title-area text-center text-md-start">
+                <div class="col-lg-8">
+                    <span class="section-subtitle">Developer Log & Insights</span>
+                    <h2 class="text-white fs-1">System Architecture & Engineering Logs</h2>
+                    <p class="text-secondary mt-2">
+                        A personal engineering space dedicated to documenting backend system architecture research,
+                        databases tuning discoveries, and zero-downtime pipeline project learnings.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row row-cols-1 row-cols-md-3 g-4 mt-2" id="devlog-container"></div>
+        </div>
+    </section>
+
     <!-- 4. CONTACT & FOOTER SECTION -->
     <hr class="border-secondary opacity-25 m-0">
     <footer class="py-5 text-white" id="contact" style="background-color: #212529 !important;">
@@ -318,18 +339,25 @@
                             <div class="modal-detail-card">
                                 <h3 class="modal-section-title">The Challenge</h3>
                                 <p class="text-secondary small mb-0">
-                                    The client's daily analytical jobs were running for 6+ hours due to un-indexed
-                                    relational queries, complex nested loops, and unstructured dimensional tables.
+                                    A complex, legacy SQL stored procedure processing massive daily timesheet and
+                                    transactional records was causing massive database thread blocks and 6+ hour
+                                    reporting latency.
                                 </p>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="modal-detail-card">
                                 <h3 class="modal-section-title">The Solution</h3>
-                                <p class="text-secondary small mb-0">
-                                    Designed a multi-stage ETL ingestion engine in C# to transform operational stores
-                                    into optimized star-schema warehouses. Applied smart columnstore indexing.
+                                <p class="text-secondary small mb-3">
+                                    Transitioned processing logic entirely out of the database layer into a decoupled,
+                                    high-performance C# migration engine. Remodeled the transactional operational stores
+                                    into a pristine Star Schema data warehouse with highly optimized dimensional tables
+                                    and columnstore indexing.
                                 </p>
+                                <div class="text-center p-3 mb-3 border border-secondary rounded border-opacity-25">
+                                    <em class="text-secondary small">[ Architecture / C4 Model Diagram Placeholder
+                                        ]</em>
+                                </div>
                             </div>
                         </div>
                         <div class="col-12">
@@ -338,11 +366,21 @@
                                 <ul class="text-secondary small mb-0">
                                     <li><strong>Query Latency reduced by 94%</strong> (analytical lookups down from
                                         minutes to sub-seconds).</li>
-                                    <li><strong>Robust Data integrity</strong> using strict transactional staging layers
-                                        and C# auditing handlers.</li>
-                                    <li>Utilized bulk-loading batches processing over <strong>5,000,000 records
-                                            daily</strong>.</li>
+                                    <li><strong>Strict Transactional Data Integrity</strong> using safe decoupled
+                                        batch-loading pipelines handling millions of rows.</li>
+                                    <li>Processing over <strong>5,000,000 daily transactional records</strong> with
+                                        automated validation and zero sync errors.</li>
                                 </ul>
+                                <div class="bg-dark border border-secondary border-opacity-25 rounded p-3 mt-4">
+                                    <p class="text-secondary small mb-3">
+                                        Due to enterprise confidentiality, the original source code is private. However,
+                                        you can review a sanitized, open-source implementation of this core
+                                        architectural pattern on my GitHub.
+                                    </p>
+                                    <a href="#" class="btn btn-primary btn-sm btn-primary-custom" role="button">
+                                        View Sanctioned PoC Repository
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -370,30 +408,48 @@
                             <div class="modal-detail-card">
                                 <h3 class="modal-section-title">The Challenge</h3>
                                 <p class="text-secondary small mb-0">
-                                    Analytical endpoints faced latency bottlenecks under high concurrent loads, stalling
-                                    the Business Intelligence dashboards during market hours.
+                                    Analytical dashboards experienced devastating database thread pool exhaustion and
+                                    severe latency bottlenecks when reading aggregate views under highly concurrent
+                                    query streams.
                                 </p>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="modal-detail-card">
                                 <h3 class="modal-section-title">The Solution</h3>
-                                <p class="text-secondary small mb-0">
-                                    Implemented a high-throughput API gateway with ASP.NET Core and Dapper. Deployed
-                                    custom connection pooling and localized memory caches.
+                                <p class="text-secondary small mb-3">
+                                    Built a high-capacity RESTful Business Intelligence API core gateway using ASP.NET
+                                    Core. Swapped heavy object-relational mappers for optimized Dapper mapper pipelines
+                                    executing tuned raw SQL queries. Deployed tailored connection pooling and localized
+                                    lookaside memory caching.
                                 </p>
+                                <div class="text-center p-3 mb-3 border border-secondary rounded border-opacity-25">
+                                    <em class="text-secondary small">[ Architecture / C4 Model Diagram Placeholder
+                                        ]</em>
+                                </div>
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="modal-detail-card">
                                 <h3 class="modal-section-title">Key Architecture &amp; Metrics</h3>
                                 <ul class="text-secondary small mb-0">
-                                    <li><strong>Response times &lt; 50ms</strong> on complex aggregate reports.</li>
-                                    <li>Sustained peak loads of <strong>8,000 requests per second</strong> with zero
-                                        thread exhaustion.</li>
-                                    <li>Minimized database memory footprint using Dapper's lightweight mapper pipelines.
+                                    <li><strong>Response Times &lt; 50ms</strong> on complex aggregate metrics reports.
                                     </li>
+                                    <li>Sustained peak concurrent loads of <strong>8,000+ requests per second</strong>
+                                        with zero database thread exhaustion or thread blocks.</li>
+                                    <li>Extremely low memory profile utilizing Dapper's lightweight object mapping
+                                        models.</li>
                                 </ul>
+                                <div class="bg-dark border border-secondary border-opacity-25 rounded p-3 mt-4">
+                                    <p class="text-secondary small mb-3">
+                                        Due to enterprise confidentiality, the original source code is private. However,
+                                        you can review a sanitized, open-source implementation of this core
+                                        architectural pattern on my GitHub.
+                                    </p>
+                                    <a href="#" class="btn btn-primary btn-sm btn-primary-custom" role="button">
+                                        View Sanctioned PoC Repository
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -430,10 +486,14 @@
                         <div class="col-md-6">
                             <div class="modal-detail-card">
                                 <h3 class="modal-section-title">The Solution</h3>
-                                <p class="text-secondary small mb-0">
+                                <p class="text-secondary small mb-3">
                                     Orchestrated a secure cloud-native deployment platform utilizing GitHub Actions
                                     workflows, containerized Docker builds, and custom bash validation scripts.
                                 </p>
+                                <div class="text-center p-3 mb-3 border border-secondary rounded border-opacity-25">
+                                    <em class="text-secondary small">[ Architecture / C4 Model Diagram Placeholder
+                                        ]</em>
+                                </div>
                             </div>
                         </div>
                         <div class="col-12">
@@ -446,6 +506,16 @@
                                         header configurations**.</li>
                                     <li>Reduced time-to-production from **45 minutes to under 4 minutes**.</li>
                                 </ul>
+                                <div class="bg-dark border border-secondary border-opacity-25 rounded p-3 mt-4">
+                                    <p class="text-secondary small mb-3">
+                                        Due to enterprise confidentiality, the original source code is private. However,
+                                        you can review a sanitized, open-source implementation of this core
+                                        architectural pattern on my GitHub.
+                                    </p>
+                                    <a href="#" class="btn btn-primary btn-sm btn-primary-custom" role="button">
+                                        View Sanctioned PoC Repository
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -486,6 +556,70 @@
                     }
                 });
             });
+        });
+    </script>
+
+    <!-- Script to dynamically load the DevLog posts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const devlogContainer = document.getElementById('devlog-container');
+            if (!devlogContainer) return;
+
+            async function loadDevLog() {
+                try {
+                    const response = await fetch('assets/data/devlog.json');
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    const data = await response.json();
+
+                    let htmlContent = '';
+                    data.forEach(post => {
+                        // Dynamically determine badge color based on category for aesthetics
+                        let badgeClass = 'bg-primary-subtle text-primary';
+                        if (post.category === 'Productivity') {
+                            badgeClass = 'bg-success-subtle text-success';
+                        } else if (post.category === 'Computer Science') {
+                            badgeClass = 'bg-info-subtle text-info';
+                        }
+
+                        htmlContent += `
+                            <div class="col">
+                                <article class="glass-card h-100 d-flex flex-column justify-content-between">
+                                    <div class="card-body p-4">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <span class="card-badge ${badgeClass} border-0 px-2 py-1 rounded small">${post.category}</span>
+                                            <span class="text-secondary small">${post.date}</span>
+                                        </div>
+                                        <h3 class="text-white fs-4 mb-3">${post.title}</h3>
+                                        <p class="text-secondary small mb-4">${post.description}</p>
+                                    </div>
+                                    <div class="p-4 pt-0">
+                                        <a href="${post.link}" class="card-link d-inline-flex align-items-center" aria-label="Read article: ${post.title}">
+                                            Read Article <i class="bi bi-arrow-right ms-2"></i>
+                                        </a>
+                                    </div>
+                                </article>
+                            </div>
+                        `;
+                    });
+
+                    devlogContainer.innerHTML = htmlContent;
+                } catch (error) {
+                    console.error('Error fetching devlog data:', error);
+                    devlogContainer.innerHTML = `
+                        <div class="col-12 text-center py-4">
+                            <div class="p-4 border border-danger border-opacity-25 rounded bg-danger-subtle text-danger bg-opacity-10">
+                                <i class="bi bi-exclamation-triangle-fill fs-2 mb-2 d-block"></i>
+                                <h4 class="fs-5">Unable to Load Developer Logs</h4>
+                                <p class="small mb-0 opacity-75">We encountered an issue fetching the latest insights. Please check back shortly or refresh the page.</p>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+
+            loadDevLog();
         });
     </script>
 </body>

@@ -1,0 +1,23 @@
+[
+  {
+    "category": "Architecture",
+    "date": "May 2026",
+    "title": "Modernizing Relational Bottlenecks",
+    "description": "Deep dive into query planner behavior, index contention, and the physical mapping mechanics of decoupling stored procedures into high-performance C# data ingestion pipelines.",
+    "link": "#"
+  },
+  {
+    "category": "Productivity",
+    "date": "May 2026",
+    "title": "Agentic AI Workflows in Daily Development",
+    "description": "Exploring structural prompt architectures and interactive agent loops to automate linting, visual regression checks, and clean architecture audits seamlessly.",
+    "link": "#"
+  },
+  {
+    "category": "Computer Science",
+    "date": "April 2026",
+    "title": "Parsing Constraints in Automata Theory",
+    "description": "A comprehensive look at context-free grammars, pushdown automata models, and state-machine transitions utilized inside core parsing modules.",
+    "link": "#"
+  }
+]

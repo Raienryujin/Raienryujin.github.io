@@ -1,11 +1,283 @@
 <!DOCTYPE html>
-     <html lang="en">
-     <head>
-         <meta charset="UTF-8">
-         <title>Nishan Rowjee Portfolio</title>
-     </head>
-     <body>
-         <h1>Hello World! This is my portfolio site.</h1>
-     </body>
-     </html>
-     ```
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nishan Rowjee | Portfolio</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Portfolio of Nishan Rowjee, showcasing high-performance web applications, engineering solutions, and digital products.">
+    <meta name="author" content="Nishan Rowjee">
+
+    <!-- Google Fonts: Outfit (Headings) and Inter (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Bootstrap 5 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- Bootstrap Icons CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Modular Custom Stylesheet -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+    <!-- 1. STICKY GLASSMORPHIC NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top custom-navbar" id="main-nav">
+        <div class="container">
+            <a class="navbar-brand text-gradient" href="#">Nishan Rowjee</a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 2. HERO SECTION -->
+    <header class="hero-section" id="about">
+        <!-- Decorative Backdrop Gradients -->
+        <div class="hero-decor-1"></div>
+        <div class="hero-decor-2"></div>
+
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <!-- Status Badge -->
+                    <div class="hero-badge">
+                        <span class="status-dot"></span>
+                        Available for Opportunities
+                    </div>
+
+                    <!-- Headline -->
+                    <h1 class="hero-title text-white">
+                        Crafting High-Performance <br>
+                        <span class="text-gradient">Web Engineering Solutions</span>
+                    </h1>
+
+                    <!-- Sub-text -->
+                    <p class="hero-lead">
+                        I am a full-stack developer dedicated to building premium digital experiences that are
+                        lightning-fast, highly scalable, and visually exceptional. Let's build something remarkable.
+                    </p>
+
+                    <!-- Call To Action Buttons -->
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#projects" class="btn btn-primary-custom glow-on-hover">
+                            View My Work <i class="bi bi-arrow-right ms-2"></i>
+                        </a>
+                        <a href="#contact" class="btn btn-secondary-custom">
+                            Let's Connect
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 3. PROJECTS GRID SECTION -->
+    <section class="py-5" id="projects">
+        <div class="container py-4">
+            <!-- Header Grid Title -->
+            <div class="row section-title-area text-center text-md-start">
+                <div class="col-lg-6">
+                    <span class="section-subtitle">Featured Work</span>
+                    <h2 class="text-white fs-1">Selected Projects</h2>
+                    <p class="text-secondary mt-2">A showcase of systems, applications, and tools engineered to solve
+                        complex problems.</p>
+                </div>
+            </div>
+
+            <!-- 3-Card Responsive Grid Wrapper -->
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+
+                <!-- Project Card 1 -->
+                <div class="col">
+                    <article class="glass-card">
+                        <div class="card-img-wrapper">
+                            <span class="card-badge">Web Application</span>
+                            <i class="bi bi-cpu project-icon"></i>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Aether AI Workspace</h3>
+                            <p class="card-text">
+                                A dynamic, interactive agentic workbench that integrates NLP models and real-time
+                                processing pipelines to automate complex workflows.
+                            </p>
+                            <div class="tech-tags">
+                                <span class="tech-pill">React</span>
+                                <span class="tech-pill">FastAPI</span>
+                                <span class="tech-pill">OpenAI API</span>
+                            </div>
+                            <div>
+                                <a href="#" class="card-link" aria-label="View Aether AI Workspace project details">
+                                    Explore Project <i class="bi bi-arrow-up-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Project Card 2 -->
+                <div class="col">
+                    <article class="glass-card">
+                        <div class="card-img-wrapper">
+                            <span class="card-badge">E-Commerce</span>
+                            <i class="bi bi-bag-check project-icon"></i>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Centauri Storefront</h3>
+                            <p class="card-text">
+                                A next-generation high-conversion headless storefront built with serverless
+                                architecture, micro-frontends, and sub-second load times.
+                            </p>
+                            <div class="tech-tags">
+                                <span class="tech-pill">Next.js</span>
+                                <span class="tech-pill">Stripe</span>
+                                <span class="tech-pill">Tailwind CSS</span>
+                            </div>
+                            <div>
+                                <a href="#" class="card-link" aria-label="View Centauri Storefront project details">
+                                    Explore Project <i class="bi bi-arrow-up-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Project Card 3 -->
+                <div class="col">
+                    <article class="glass-card">
+                        <div class="card-img-wrapper">
+                            <span class="card-badge">Data Systems</span>
+                            <i class="bi bi-database-gear project-icon"></i>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Titan Analytics Engine</h3>
+                            <p class="card-text">
+                                High-throughput real-time data ingestion and processing pipeline designed to handle
+                                millions of transactions with visual dashboard metrics.
+                            </p>
+                            <div class="tech-tags">
+                                <span class="tech-pill">Go</span>
+                                <span class="tech-pill">Python</span>
+                                <span class="tech-pill">Apache Kafka</span>
+                            </div>
+                            <div>
+                                <a href="#" class="card-link" aria-label="View Titan Analytics Engine project details">
+                                    Explore Project <i class="bi bi-arrow-up-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. CONTACT & FOOTER SECTION -->
+    <footer class="contact-section" id="contact">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <!-- CTA Card Wrapper -->
+                    <div class="contact-card">
+                        <span class="section-subtitle">Let's Connect</span>
+                        <h2 class="text-white fs-1 mb-3">Start a Conversation</h2>
+                        <p class="text-secondary mx-auto mb-4" style="max-width: 500px;">
+                            Have an exciting project or opportunity you want to collaborate on? I'm always open to
+                            discussing new engineering challenges.
+                        </p>
+
+                        <!-- Contact Action Button -->
+                        <a href="mailto:nishan.rowjee@example.com"
+                            class="btn btn-primary-custom glow-on-hover px-4 py-3">
+                            <i class="bi bi-envelope-fill me-2"></i> Send an Email
+                        </a>
+
+                        <!-- Social Link Placeholders -->
+                        <div class="social-links">
+                            <a href="https://github.com/Raienryujin" target="_blank" rel="noopener noreferrer"
+                                class="social-btn github" aria-label="GitHub Profile">
+                                <i class="bi bi-github"></i>
+                            </a>
+                            <a href="https://linkedin.com/in/nishanrowjee" target="_blank" rel="noopener noreferrer"
+                                class="social-btn linkedin" aria-label="LinkedIn Profile">
+                                <i class="bi bi-linkedin"></i>
+                            </a>
+                            <a href="mailto:nishan.rowjee@example.com" class="social-btn email" aria-label="Email Link">
+                                <i class="bi bi-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Signature and Info -->
+            <div class="row">
+                <div class="col text-center">
+                    <div class="footer-divider"></div>
+                    <p class="footer-text mb-0">&copy; 2026 Nishan Rowjee. All rights reserved.</p>
+                    <p class="footer-text mt-1" style="font-size: 0.75rem; opacity: 0.6;">Designed with passion using
+                        HTML5, modular CSS, &amp; Bootstrap 5.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 Bundle JS (includes Popper) CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <!-- Simple JS to dynamically highlight active nav elements on scroll -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section, header');
+            const navLinks = document.querySelectorAll('.custom-navbar .nav-link');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= (sectionTop - 120)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

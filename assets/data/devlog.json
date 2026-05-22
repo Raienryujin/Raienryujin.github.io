@@ -2,6 +2,13 @@
   {
     "category": "Architecture",
     "date": "May 2026",
+    "title": "Solving Cache Stampedes with Double-Check Locking",
+    "description": "How we achieved 6,800+ Requests Per Second and a P(95) of 0.66ms under a 1,000 VU stress test by synchronizing Kestrel minimal APIs with SemaphoreSlim and Dapper.",
+    "link": "https://github.com/Raienryujin/BI_Project"
+  },
+  {
+    "category": "Architecture",
+    "date": "May 2026",
     "title": "Modernizing Relational Bottlenecks",
     "description": "Deep dive into query planner behavior, index contention, and the physical mapping mechanics of decoupling stored procedures into high-performance C# data ingestion pipelines.",
     "link": "#"

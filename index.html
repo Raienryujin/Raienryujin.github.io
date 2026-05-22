@@ -418,14 +418,11 @@
                             <div class="modal-detail-card">
                                 <h3 class="modal-section-title">The Solution</h3>
                                 <p class="text-secondary small mb-3">
-                                    Built a high-capacity RESTful Business Intelligence API core gateway using ASP.NET
-                                    Core. Swapped heavy object-relational mappers for optimized Dapper mapper pipelines
-                                    executing tuned raw SQL queries. Deployed tailored connection pooling and localized
-                                    lookaside memory caching.
+                                    Built an ultra-low-latency ASP.NET Core Minimal API utilizing Dapper for zero-overhead SQL mapping. Implemented the **Lookaside Cache pattern** via <code>IMemoryCache</code> and resolved a database connection pool exhaustion (Cache Stampede) bottleneck under high load. This was achieved by introducing a **Double-Check Locking pattern** using a static <code>ConcurrentDictionary&lt;string, SemaphoreSlim&gt;</code> to serialize database hits during cold starts.
                                 </p>
-                                <div class="text-center p-3 mb-3 border border-secondary rounded border-opacity-25">
-                                    <em class="text-secondary small">[ Architecture / C4 Model Diagram Placeholder
-                                        ]</em>
+                                <div class="text-center p-3 mb-3 border border-secondary rounded border-opacity-25 bg-dark bg-opacity-50">
+                                    <em class="text-white small font-monospace d-block mb-1">Double-Check Locking Cache Pattern</em>
+                                    <span class="text-secondary small d-block">TryGetValue &rarr; SemaphoreSlim.WaitAsync() &rarr; TryGetValue (Again) &rarr; Dapper Query &rarr; Cache.Set()</span>
                                 </div>
                             </div>
                         </div>
@@ -433,21 +430,17 @@
                             <div class="modal-detail-card">
                                 <h3 class="modal-section-title">Key Architecture &amp; Metrics</h3>
                                 <ul class="text-secondary small mb-0">
-                                    <li><strong>Response Times &lt; 50ms</strong> on complex aggregate metrics reports.
-                                    </li>
-                                    <li>Sustained peak concurrent loads of <strong>8,000+ requests per second</strong>
-                                        with zero database thread exhaustion or thread blocks.</li>
-                                    <li>Extremely low memory profile utilizing Dapper's lightweight object mapping
-                                        models.</li>
+                                    <li><strong>P(95) Latency of 0.66 ms:</strong> Flawless sub-millisecond responsiveness under massive concurrent load.</li>
+                                    <li><strong>6,800+ Requests Per Second:</strong> Sustained high throughput under extreme stress test conditions.</li>
+                                    <li><strong>1,000 Concurrent VUs:</strong> Handled massive concurrent virtual users with 100% request success rate (HTTP 200) and zero thread pool exhaustion.</li>
+                                    <li><strong>Zero Log Overhead:</strong> Stripped blocking Kestrel loggers to eliminate internal logging bottlenecks.</li>
                                 </ul>
                                 <div class="bg-dark border border-secondary border-opacity-25 rounded p-3 mt-4">
-                                    <p class="text-secondary small mb-3">
-                                        Due to enterprise confidentiality, the original source code is private. However,
-                                        you can review a sanitized, open-source implementation of this core
-                                        architectural pattern on my GitHub.
+                                    <p class="text-secondary small mb-2">
+                                        Due to enterprise confidentiality, the original source code is private. However, you can review a sanitized, open-source implementation of this core architectural pattern on my GitHub.
                                     </p>
-                                    <a href="#" class="btn btn-primary btn-sm btn-primary-custom" role="button">
-                                        View Sanctioned PoC Repository
+                                    <a href="https://github.com/Raienryujin/BiCore-HighConcurrency-PoC" target="_blank" rel="noopener noreferrer" class="btn btn-primary-custom btn-sm mt-2" role="button">
+                                        <i class="bi bi-github me-1"></i> View Sanctioned PoC Repository
                                     </a>
                                 </div>
                             </div>

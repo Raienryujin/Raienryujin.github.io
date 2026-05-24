@@ -258,29 +258,26 @@
                 <div class="col">
                     <article class="glass-card">
                         <div class="card-img-wrapper">
-                            <span
-                                class="badge bg-warning text-dark border-0 px-3 py-1 position-absolute top-0 start-0 m-3 small"
-                                style="border-radius: 50px; font-weight: 600; font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase;">In
-                                Progress</span>
-                            <span class="card-badge">DevOps & Cloud Orchestration</span>
-                            <i class="bi bi-shield-check project-icon"></i>
+                            <span class="card-badge">DevOps &amp; Golden Path Engineering</span>
+                            <i class="bi bi-diagram-2 project-icon"></i>
                         </div>
                         <div class="card-body">
-                            <h3 class="card-title">Automated CI/CD Deployment Engine</h3>
+                            <h3 class="card-title">Project Forge: Monorepo Template</h3>
                             <p class="card-text">
-                                Designed and implemented secure containerized integration workflows, automating linting,
-                                security audits, and zero-downtime production deployment releases.
+                                A production-grade GitHub Template enabling atomic full-stack commits across
+                                ASP.NET Core &amp; Next.js, with a path-filtered CI/CD pipeline that rebuilds
+                                only the affected service on every push.
                             </p>
                             <div class="tech-tags">
                                 <span class="tech-pill">GitHub Actions</span>
-                                <span class="tech-pill">Shell Scripting</span>
-                                <span class="tech-pill">Security Protocols</span>
+                                <span class="tech-pill">ASP.NET Core 8</span>
+                                <span class="tech-pill">Next.js</span>
                             </div>
                             <div>
-                                <span class="card-link text-secondary opacity-50" style="cursor: not-allowed;"
-                                    aria-label="Case study in progress">
-                                    Case Study Coming Soon <i class="bi bi-clock ms-1"></i>
-                                </span>
+                                <a href="#" class="card-link" data-bs-toggle="modal" data-bs-target="#cicdModal"
+                                    role="button" aria-label="View Project Forge Enterprise Monorepo case study">
+                                    View Case Study <i class="bi bi-arrow-up-right"></i>
+                                </a>
                             </div>
                         </div>
                     </article>
@@ -550,57 +547,126 @@
     <!-- CASE STUDY MODAL 3 -->
     <div class="modal fade glass-modal" id="cicdModal" tabindex="-1" aria-labelledby="cicdModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 class="modal-title fs-4 text-white" id="cicdModalLabel">Case Study: Automated CI/CD Deployment
-                        Engine</h2>
+                    <h2 class="modal-title fs-4 text-white" id="cicdModalLabel">Case Study: Project Forge
+                        Monorepo Template</h2>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row g-4">
+                        <!-- Challenge + Solution -->
                         <div class="col-md-6">
                             <div class="modal-detail-card">
                                 <h3 class="modal-section-title">The Challenge</h3>
                                 <p class="text-secondary small mb-0">
-                                    Manual release procedures delayed staging deployments, leading to integration
-                                    conflicts, security exposure, and deployment downtime.
+                                    Shipping cross-cutting features across a full-stack codebase required coordinating
+                                    separate repos, triggering redundant CI builds on unrelated changes, and manually
+                                    synchronising API contracts, shared types, and UI components across multiple
+                                    pull requests and review cycles, creating friction, integration drift, and
+                                    avoidable downtime.
                                 </p>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="modal-detail-card">
                                 <h3 class="modal-section-title">The Solution</h3>
-                                <p class="text-secondary small mb-3">
-                                    Orchestrated a secure cloud-native deployment platform utilizing GitHub Actions
-                                    workflows, containerized Docker builds, and custom bash validation scripts.
+                                <p class="text-secondary small mb-0">
+                                    Designed <strong class="text-white">Project Forge</strong>, a production-grade
+                                    monorepo template enabling <em>atomic full-stack commits</em>. A single commit
+                                    ships an ASP.NET Core API endpoint, a Next.js UI component, and a shared
+                                    TypeScript type definition through one review and one merge. A
+                                    <strong class="text-white">path-filtered GitHub Actions pipeline</strong> ensures
+                                    only the affected service (API or web) is rebuilt, keeping CI fast and
+                                    resource-efficient.
                                 </p>
-                                <div class="text-center p-3 mb-3 border border-secondary rounded border-opacity-25">
-                                    <em class="text-secondary small">[ Architecture / C4 Model Diagram Placeholder
-                                        ]</em>
+                            </div>
+                        </div>
+
+                        <!-- Architecture: CI Pipeline -->
+                        <div class="col-12">
+                            <div class="modal-detail-card">
+                                <h3 class="modal-section-title">CI Pipeline Architecture</h3>
+                                <p class="text-secondary small mb-3">
+                                    The <code>.github/workflows/ci.yml</code> pipeline implements a path-filtered
+                                    strategy with a <strong class="text-white">ci-gate aggregator</strong> job,
+                                    a single status check branch-protection rules can target regardless of which
+                                    subset of jobs ran.
+                                </p>
+                                <div class="bg-dark border border-secondary border-opacity-25 rounded p-3 mb-0">
+                                    <pre class="text-secondary small mb-0"
+                                        style="white-space: pre-wrap; font-size: 0.75rem;">Push to main / develop  (or PR opened)
+│
+├── apps/api/** changed  →  ✅ build-api
+│     dotnet restore → build → test
+│
+├── apps/web/** changed  →  ✅ build-web
+│     npm ci → lint → build
+│
+└── ci-gate (aggregator)
+      Reports overall pass/fail for branch protection</pre>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12">
+
+                        <!-- Key Features -->
+                        <div class="col-md-6">
                             <div class="modal-detail-card">
-                                <h3 class="modal-section-title">Key Architecture &amp; Metrics</h3>
-                                <ul class="text-secondary small mb-0">
-                                    <li>Achieved **100% automated blue-green releases** with zero active deployment
-                                        downtime.</li>
-                                    <li>Integrated compliance verification scripts auditing for **TLS 1.3 and security
-                                        header configurations**.</li>
-                                    <li>Reduced time-to-production from **45 minutes to under 4 minutes**.</li>
+                                <h3 class="modal-section-title">Key Features</h3>
+                                <ul class="text-secondary small mb-0 ps-3">
+                                    <li class="mb-1"><strong class="text-white">Atomic commits:</strong> ship API + UI
+                                        + shared types in one PR</li>
+                                    <li class="mb-1"><strong class="text-white">Path-filtered CI:</strong> only rebuild
+                                        the service you touched</li>
+                                    <li class="mb-1"><strong class="text-white">Concurrency control:</strong> duplicate
+                                        runs on the same branch auto-cancelled</li>
+                                    <li class="mb-1"><strong class="text-white">CI Gate job:</strong> single
+                                        branch-protection target, always valid</li>
+                                    <li class="mb-1"><strong class="text-white">Workflow integrity:</strong> any
+                                        <code>.github/workflows/**</code> edit rebuilds all jobs
+                                    </li>
+                                    <li><strong class="text-white">GitHub Template:</strong> one click to scaffold a
+                                        new project</li>
                                 </ul>
-                                <div class="bg-dark border border-secondary border-opacity-25 rounded p-3 mt-4">
-                                    <p class="text-secondary small mb-3">
-                                        Due to enterprise confidentiality, the original source code is private. However,
-                                        you can review a sanitized, open-source implementation of this core
-                                        architectural pattern on my GitHub.
-                                    </p>
-                                    <a href="#" class="btn btn-primary btn-sm btn-primary-custom" role="button">
-                                        View Sanctioned PoC Repository
-                                    </a>
+                            </div>
+                        </div>
+
+                        <!-- Tech Stack -->
+                        <div class="col-md-6">
+                            <div class="modal-detail-card">
+                                <h3 class="modal-section-title">Tech Stack</h3>
+                                <div class="tech-tags mb-3">
+                                    <span class="tech-pill">ASP.NET Core 8</span>
+                                    <span class="tech-pill">Next.js / React</span>
+                                    <span class="tech-pill">TypeScript</span>
+                                    <span class="tech-pill">C#</span>
+                                    <span class="tech-pill">GitHub Actions</span>
+                                    <span class="tech-pill">Monorepo</span>
                                 </div>
+                                <h3 class="modal-section-title mt-3">Roadmap</h3>
+                                <ul class="text-secondary small mb-0 ps-3">
+                                    <li>Docker Compose for local multi-service orchestration</li>
+                                    <li>Terraform / Pulumi IaC in <code>/infra</code></li>
+                                    <li>OpenAPI → TypeScript shared client generation</li>
+                                    <li>Turborepo / Nx smart caching &amp; task orchestration</li>
+                                    <li>Husky + lint-staged pre-commit hooks</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- CTA -->
+                        <div class="col-12">
+                            <div class="bg-dark border border-secondary border-opacity-25 rounded p-3">
+                                <p class="text-secondary small mb-3">
+                                    Project Forge is an open-source GitHub Template. Click below to explore the
+                                    repository structure, workflows, and documentation — or use it as a template
+                                    to instantly scaffold your next full-stack project.
+                                </p>
+                                <a href="https://github.com/Raienryujin/Project-Forge" target="_blank"
+                                    rel="noopener noreferrer" class="btn btn-primary-custom btn-sm mt-1" role="button">
+                                    <i class="bi bi-github me-1"></i> View Enterprise Monorepo Template
+                                </a>
                             </div>
                         </div>
                     </div>

@@ -287,18 +287,43 @@
     <!-- 3.5 DEVELOPER BLOG SECTION -->
     <section class="py-5" id="blog" style="background-color: #0f131f;">
         <div class="container py-4">
-            <div class="row section-title-area text-center text-md-start">
+            <div class="row section-title-area text-center text-md-start mb-4">
                 <div class="col-lg-8">
                     <span class="section-subtitle">Developer Log & Insights</span>
                     <h2 class="text-white fs-1">System Architecture & Engineering Logs</h2>
                     <p class="text-secondary mt-2">
-                        A personal engineering space dedicated to documenting backend system architecture research,
-                        databases tuning discoveries, and zero-downtime pipeline project learnings.
+                        Welcome to my engineering log—where I document the triumphs of optimizing backend architectures
+                        and the inevitable late-night debugging sessions. From caching strategies to custom game
+                        engines, here's what I've been working on.
                     </p>
                 </div>
             </div>
 
-            <div class="row row-cols-1 row-cols-md-3 g-4 mt-2" id="devlog-container"></div>
+            <!-- Professional Section -->
+            <div class="mb-4">
+                <h3 class="text-white fs-4 mt-4 mb-2 border-bottom border-secondary border-opacity-25 pb-2">
+                    <i class="bi bi-briefcase-fill me-2 text-primary"></i>Professional Deep Dives
+                </h3>
+                <p class="text-secondary small">
+                    Where the rubber meets the road (and occasionally catches fire). These articles cover
+                    production-grade architectures, battle-tested methodologies, and the technical hurdles I've
+                    navigated to keep enterprise systems running smoothly at scale.
+                </p>
+            </div>
+            <div class="row row-cols-1 row-cols-md-3 g-4 mb-5" id="devlog-professional-container"></div>
+
+            <!-- Passion Projects Section -->
+            <div class="mb-4 mt-5">
+                <h3 class="text-white fs-4 mb-2 border-bottom border-secondary border-opacity-25 pb-2">
+                    <i class="bi bi-controller me-2 text-primary"></i>Passion Projects & Explorations
+                </h3>
+                <p class="text-secondary small">
+                    Because writing code from 9 to 5 just isn't enough. Here you'll find my side quests: explorations
+                    into game engines, AI tooling, and whatever else caught my attention over the weekend. Built purely
+                    for the joy of learning (and breaking) things.
+                </p>
+            </div>
+            <div class="row row-cols-1 row-cols-md-3 g-4" id="devlog-passion-container"></div>
         </div>
     </section>
 
@@ -315,7 +340,7 @@
                     <i class="bi bi-github me-1"></i> GitHub
                 </a>
                 <span class="text-secondary opacity-50">|</span>
-                <a href="#" class="text-light text-decoration-none link-secondary">
+                <a href="https://www.linkedin.com/in/nrowjee/" class="text-light text-decoration-none link-secondary">
                     <i class="bi bi-linkedin me-1"></i> LinkedIn
                 </a>
             </div>
@@ -418,11 +443,21 @@
                             <div class="modal-detail-card">
                                 <h3 class="modal-section-title">The Solution</h3>
                                 <p class="text-secondary small mb-3">
-                                    Built an ultra-low-latency ASP.NET Core Minimal API utilizing Dapper for zero-overhead SQL mapping. Implemented the **Lookaside Cache pattern** via <code>IMemoryCache</code> and resolved a database connection pool exhaustion (Cache Stampede) bottleneck under high load. This was achieved by introducing a **Double-Check Locking pattern** using a static <code>ConcurrentDictionary&lt;string, SemaphoreSlim&gt;</code> to serialize database hits during cold starts.
+                                    Built an ultra-low-latency ASP.NET Core Minimal API utilizing Dapper for
+                                    zero-overhead SQL mapping. Implemented the **Lookaside Cache pattern** via
+                                    <code>IMemoryCache</code> and resolved a database connection pool exhaustion (Cache
+                                    Stampede) bottleneck under high load. This was achieved by introducing a
+                                    **Double-Check Locking pattern** using a static
+                                    <code>ConcurrentDictionary&lt;string, SemaphoreSlim&gt;</code> to serialize database
+                                    hits during cold starts.
                                 </p>
-                                <div class="text-center p-3 mb-3 border border-secondary rounded border-opacity-25 bg-dark bg-opacity-50">
-                                    <em class="text-white small font-monospace d-block mb-1">Double-Check Locking Cache Pattern</em>
-                                    <span class="text-secondary small d-block">TryGetValue &rarr; SemaphoreSlim.WaitAsync() &rarr; TryGetValue (Again) &rarr; Dapper Query &rarr; Cache.Set()</span>
+                                <div
+                                    class="text-center p-3 mb-3 border border-secondary rounded border-opacity-25 bg-dark bg-opacity-50">
+                                    <em class="text-white small font-monospace d-block mb-1">Double-Check Locking Cache
+                                        Pattern</em>
+                                    <span class="text-secondary small d-block">TryGetValue &rarr;
+                                        SemaphoreSlim.WaitAsync() &rarr; TryGetValue (Again) &rarr; Dapper Query &rarr;
+                                        Cache.Set()</span>
                                 </div>
                             </div>
                         </div>
@@ -430,16 +465,24 @@
                             <div class="modal-detail-card">
                                 <h3 class="modal-section-title">Key Architecture &amp; Metrics</h3>
                                 <ul class="text-secondary small mb-0">
-                                    <li><strong>P(95) Latency of 0.66 ms:</strong> Flawless sub-millisecond responsiveness under massive concurrent load.</li>
-                                    <li><strong>6,800+ Requests Per Second:</strong> Sustained high throughput under extreme stress test conditions.</li>
-                                    <li><strong>1,000 Concurrent VUs:</strong> Handled massive concurrent virtual users with 100% request success rate (HTTP 200) and zero thread pool exhaustion.</li>
-                                    <li><strong>Zero Log Overhead:</strong> Stripped blocking Kestrel loggers to eliminate internal logging bottlenecks.</li>
+                                    <li><strong>P(95) Latency of 0.66 ms:</strong> Flawless sub-millisecond
+                                        responsiveness under massive concurrent load.</li>
+                                    <li><strong>6,800+ Requests Per Second:</strong> Sustained high throughput under
+                                        extreme stress test conditions.</li>
+                                    <li><strong>1,000 Concurrent VUs:</strong> Handled massive concurrent virtual users
+                                        with 100% request success rate (HTTP 200) and zero thread pool exhaustion.</li>
+                                    <li><strong>Zero Log Overhead:</strong> Stripped blocking Kestrel loggers to
+                                        eliminate internal logging bottlenecks.</li>
                                 </ul>
                                 <div class="bg-dark border border-secondary border-opacity-25 rounded p-3 mt-4">
                                     <p class="text-secondary small mb-2">
-                                        Due to enterprise confidentiality, the original source code is private. However, you can review a sanitized, open-source implementation of this core architectural pattern on my GitHub.
+                                        Due to enterprise confidentiality, the original source code is private. However,
+                                        you can review a sanitized, open-source implementation of this core
+                                        architectural pattern on my GitHub.
                                     </p>
-                                    <a href="https://github.com/Raienryujin/BiCore-HighConcurrency-PoC" target="_blank" rel="noopener noreferrer" class="btn btn-primary-custom btn-sm mt-2" role="button">
+                                    <a href="https://github.com/Raienryujin/BiCore-HighConcurrency-PoC" target="_blank"
+                                        rel="noopener noreferrer" class="btn btn-primary-custom btn-sm mt-2"
+                                        role="button">
                                         <i class="bi bi-github me-1"></i> View Sanctioned PoC Repository
                                     </a>
                                 </div>
@@ -555,8 +598,10 @@
     <!-- Script to dynamically load the DevLog posts -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const devlogContainer = document.getElementById('devlog-container');
-            if (!devlogContainer) return;
+            const professionalContainer = document.getElementById('devlog-professional-container');
+            const passionContainer = document.getElementById('devlog-passion-container');
+
+            if (!professionalContainer || !passionContainer) return;
 
             async function loadDevLog() {
                 try {
@@ -566,47 +611,59 @@
                     }
                     const data = await response.json();
 
-                    let htmlContent = '';
-                    data.forEach(post => {
-                        // Dynamically determine badge color based on category for aesthetics
-                        let badgeClass = 'bg-primary-subtle text-primary';
-                        if (post.category === 'Productivity') {
-                            badgeClass = 'bg-success-subtle text-success';
-                        } else if (post.category === 'Computer Science') {
-                            badgeClass = 'bg-info-subtle text-info';
-                        }
+                    const renderPosts = (posts, container) => {
+                        let htmlContent = '';
+                        posts.forEach(post => {
+                            let badgeClass = 'bg-primary-subtle text-primary';
 
-                        htmlContent += `
-                            <div class="col">
-                                <article class="glass-card h-100 d-flex flex-column justify-content-between">
-                                    <div class="card-body p-4">
-                                        <div class="d-flex justify-content-between align-items-center mb-3">
-                                            <span class="card-badge ${badgeClass} border-0 px-2 py-1 rounded small">${post.category}</span>
-                                            <span class="text-secondary small">${post.date}</span>
+                            // Color mapping
+                            if (post.category === 'Testing' || post.category === 'Frontend') {
+                                badgeClass = 'bg-success-subtle text-success';
+                            } else if (post.category === 'Backend' || post.category === 'Architecture') {
+                                badgeClass = 'bg-info-subtle text-info';
+                            } else if (post.category === 'Game Dev' || post.category === 'Tooling') {
+                                badgeClass = 'bg-warning-subtle text-warning text-dark';
+                            } else if (post.category === 'Hardware') {
+                                badgeClass = 'bg-danger-subtle text-danger';
+                            } else if (post.category === 'Mixed Reality') {
+                                badgeClass = 'bg-primary-subtle text-primary';
+                            }
+
+                            htmlContent += `
+                                <div class="col">
+                                    <article class="glass-card h-100 d-flex flex-column justify-content-between">
+                                        <div class="card-body p-4">
+                                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                                <span class="card-badge ${badgeClass} border-0 px-2 py-1 rounded small">${post.category}</span>
+                                                <span class="text-secondary small">${post.date}</span>
+                                            </div>
+                                            <h3 class="text-white fs-4 mb-3">${post.title}</h3>
+                                            <p class="text-secondary small mb-4">${post.description}</p>
                                         </div>
-                                        <h3 class="text-white fs-4 mb-3">${post.title}</h3>
-                                        <p class="text-secondary small mb-4">${post.description}</p>
-                                    </div>
-                                    <div class="p-4 pt-0">
-                                        ${post.link === '#' || post.link === '' ? `
-                                        <span class="card-link d-inline-flex align-items-center text-secondary opacity-50" style="cursor: not-allowed;" aria-label="Article coming soon: ${post.title}">
-                                            Coming Soon <i class="bi bi-clock ms-2"></i>
-                                        </span>
-                                        ` : `
-                                        <a href="${post.link}" class="card-link d-inline-flex align-items-center" aria-label="Read article: ${post.title}">
-                                            Read Article <i class="bi bi-arrow-right ms-2"></i>
-                                        </a>
-                                        `}
-                                    </div>
-                                </article>
-                            </div>
-                        `;
-                    });
+                                        <div class="p-4 pt-0">
+                                            ${post.link === '#' || post.link === '' ? `
+                                            <span class="card-link d-inline-flex align-items-center text-secondary opacity-50" style="cursor: not-allowed;" aria-label="Article coming soon: ${post.title}">
+                                                Coming Soon <i class="bi bi-clock ms-2"></i>
+                                            </span>
+                                            ` : `
+                                            <a href="${post.link}" class="card-link d-inline-flex align-items-center" aria-label="Read article: ${post.title}">
+                                                Read Article <i class="bi bi-arrow-right ms-2"></i>
+                                            </a>
+                                            `}
+                                        </div>
+                                    </article>
+                                </div>
+                            `;
+                        });
+                        container.innerHTML = htmlContent;
+                    };
 
-                    devlogContainer.innerHTML = htmlContent;
+                    renderPosts(data.professional, professionalContainer);
+                    renderPosts(data.passion, passionContainer);
+
                 } catch (error) {
                     console.error('Error fetching devlog data:', error);
-                    devlogContainer.innerHTML = `
+                    const errorHtml = `
                         <div class="col-12 text-center py-4">
                             <div class="p-4 border border-danger border-opacity-25 rounded bg-danger-subtle text-danger bg-opacity-10">
                                 <i class="bi bi-exclamation-triangle-fill fs-2 mb-2 d-block"></i>
@@ -615,6 +672,8 @@
                             </div>
                         </div>
                     `;
+                    professionalContainer.innerHTML = errorHtml;
+                    passionContainer.innerHTML = errorHtml;
                 }
             }
 

@@ -1,30 +1,48 @@
-[
-  {
-    "category": "Architecture",
-    "date": "May 2026",
-    "title": "Solving Cache Stampedes with Double-Check Locking",
-    "description": "How we achieved 6,800+ Requests Per Second and a P(95) of 0.66ms under a 1,000 VU stress test by synchronizing Kestrel minimal APIs with SemaphoreSlim and Dapper.",
-    "link": "cache-stampede.html"
-  },
-  {
-    "category": "Architecture",
-    "date": "May 2026",
-    "title": "Modernizing Relational Bottlenecks",
-    "description": "Deep dive into query planner behavior, index contention, and the physical mapping mechanics of decoupling stored procedures into high-performance C# data ingestion pipelines.",
-    "link": "#"
-  },
-  {
-    "category": "Productivity",
-    "date": "May 2026",
-    "title": "Agentic AI Workflows in Daily Development",
-    "description": "Exploring structural prompt architectures and interactive agent loops to automate linting, visual regression checks, and clean architecture audits seamlessly.",
-    "link": "#"
-  },
-  {
-    "category": "Computer Science",
-    "date": "April 2026",
-    "title": "Parsing Constraints in Automata Theory",
-    "description": "A comprehensive look at context-free grammars, pushdown automata models, and state-machine transitions utilized inside core parsing modules.",
-    "link": "#"
-  }
-]
+{
+  "professional": [
+    {
+      "category": "Architecture",
+      "date": "May 2026",
+      "title": "Solving Cache Stampedes with Double-Check Locking",
+      "description": "How I achieved 6,800+ Requests Per Second under a 1,000 VU stress test by synchronizing Kestrel minimal APIs with SemaphoreSlim and Dapper.",
+      "link": "cache-stampede.html"
+    },
+    {
+      "category": "Testing",
+      "date": "May 2026",
+      "title": "Test-Driven Development: Theory vs Practice",
+      "description": "My personal learnings and practical takeaways from applying strict TDD methodologies, xUnit, and Moq to legacy enterprise applications.",
+      "link": "tdd-theory-vs-practice.html"
+    },
+    {
+      "category": "Tooling",
+      "date": "April 2026",
+      "title": "Tesseract: MCP Codebase Graph Server",
+      "description": "How I reduced AI agent token usage by replacing heavy source file-reads with precise, lightning-fast AST graph queries.",
+      "link": "tesseract-mcp-server.html"
+    }
+  ],
+  "passion": [
+    {
+      "category": "Hardware",
+      "date": "May 2026",
+      "title": "Tinkering with the Force: Building a Custom Lightsaber",
+      "description": "How my obsession with Star Wars led me to conquer my fear of soldering irons, custom soundboards, and custom Neopixel LED wiring.",
+      "link": "lightsaber-build.html"
+    },
+    {
+      "category": "Game Dev",
+      "date": "April 2026",
+      "title": "Stepping into Unreal Engine: My Indie Game Sandbox",
+      "description": "My first deep dive into Unreal's Blueprint system, C++ mechanics, and high-fidelity physics to build a functional prototype from scratch.",
+      "link": "unreal-game-dev.html"
+    },
+    {
+      "category": "Mixed Reality",
+      "date": "Coming Soon",
+      "title": "Project Spatial: The Next Frontier in Immersion",
+      "description": "A secretive exploration blending spatial computing, high-frequency hand tracking, and virtual environments. Details are under wraps... for now.",
+      "link": "#"
+    }
+  ]
+}

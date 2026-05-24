@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test-Driven Development: Theory vs Practice | DevLog</title>
+
+    <meta name="description"
+        content="My personal learnings and practical takeaways from applying strict TDD methodologies, xUnit, and Moq to legacy enterprise applications.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Code Highlight styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        .article-header {
+            padding: 8rem 0 4rem;
+            background: linear-gradient(180deg, #131722 0%, #0a0c10 100%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .article-content {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: #d1d5db;
+        }
+
+        .article-content h2 {
+            color: #fff;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+        }
+
+        .article-content h3 {
+            color: #fff;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .article-content pre {
+            background-color: #1a1e29 !important;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
+            padding: 1.5rem !important;
+            margin: 2rem 0;
+        }
+
+        .pull-quote {
+            border-left: 4px solid #3b82f6;
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            color: #9ca3af;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 1.5rem;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+    </style>
+</head>
+
+<body style="background-color: #0a0c10; color: #fff;">
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top custom-navbar" id="main-nav">
+        <div class="container">
+            <a class="navbar-brand text-gradient" href="index.html">Nishan Rowjee</a>
+            <div class="ms-auto">
+                <a href="index.html#blog" class="btn btn-sm btn-outline-light rounded-pill px-3">
+                    <i class="bi bi-arrow-left me-1"></i> Back to Home
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ARTICLE HEADER -->
+    <header class="article-header text-center">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <span class="badge bg-success-subtle text-success mb-3 px-3 py-2 fs-6 rounded-pill">Testing</span>
+                    <h1 class="display-4 fw-bold text-white mb-4">Test-Driven Development: Theory vs Practice</h1>
+                    <p class="lead text-secondary">
+                        My personal learnings and practical takeaways from applying strict TDD methodologies, xUnit, and
+                        Moq to legacy enterprise applications.
+                    </p>
+                    <div class="mt-4 text-secondary small d-flex align-items-center justify-content-center gap-3">
+                        <span><i class="bi bi-calendar3 me-1"></i> May 2026</span>
+                        <span><i class="bi bi-clock me-1"></i> 5 min read</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ARTICLE CONTENT -->
+    <main class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 article-content">
+
+                <p>Let's be honest: the first time you hear about Test-Driven Development (TDD), it sounds like a
+                    practical joke. <em>"Wait, you want me to write the code that checks if the code works... before
+                        I've even written the code?"</em></p>
+                <p>In theory, TDD is the holy grail of software engineering. You write a failing test (Red), you write
+                    the absolute minimum code to make it pass (Green), and then you make the code not look like it was
+                    written by a caffeinated raccoon at 3 AM (Refactor).</p>
+
+                <div class="pull-quote">
+                    "TDD is great until the deadline is Friday and it's currently Thursday night." – Every developer,
+                    ever.
+                </div>
+
+                <h2>The Legacy Code Wake-Up Call</h2>
+                <p>My real journey into testing didn't start with a blank slate; it started with a massive piece of
+                    enterprise software. I was tasked with playing around with end-to-end testing on a legacy codebase
+                    that was, to put it mildly, terrifying to touch. Fixing a bug in one module suddenly broke workflows
+                    on the other side of the system. It felt like playing a high-stakes game of software whack-a-mole.
+                </p>
+                <p>This pain pushed me to do some serious research. I began drilling down into the underlying theory and
+                    principles of decoupled architecture, dependency injection, and why testability is the ultimate
+                    indicator of code quality.</p>
+
+                <h2>Embracing the Pain (and xUnit)</h2>
+                <p>My current CTO has been a huge driving force in this area. He constantly motivated and encouraged
+                    the engineering team to adopt strict testing methodologies, a mindset I am actively taking to heart.
+                    I decided to bite the bullet and apply strict TDD using <strong>xUnit</strong> and
+                    <strong>Moq</strong> for our C# backend. I forced myself to write the test block before touching the
+                    business logic.
+                </p>
+                <p>I suppose it's become something of a mantra now, "Red, Green, Refactor", "Arrange, Act, Assert", etc.
+                    However
+                    I feel approaching formulaically, while beneficial for the initial scaffolding, can tunnel your
+                    vision into solely that, which is something I generally try to avoid.
+                </p>
+
+                <pre><code class="language-csharp">using Xunit;
+using Moq;
+
+public class AnalyticsServiceTests
+{
+    [Fact]
+    public async Task ProcessReport_ValidData_ReturnsSuccess()
+    {
+        // 1. Arrange (The setup)
+        var mockRepo = new Mock&lt;IReportRepository&gt;();
+        mockRepo.Setup(repo =&gt; repo.GetDataAsync(It.IsAny&lt;int&gt;()))
+                .ReturnsAsync(new ReportData { Status = "Valid" });
+                
+        var service = new AnalyticsService(mockRepo.Object);
+        
+        // 2. Act (The part where the user breaks your app)
+        var result = await service.ProcessReportAsync(1);
+        
+        // 3. Assert (The smug satisfaction when it works)
+        Assert.True(result.IsSuccess);
+        mockRepo.Verify(repo =&gt; repo.GetDataAsync(1), Times.Once);
+    }
+}</code></pre>
+                <p class="small text-secondary mt-2">
+                    <em>Note: The snippet above is adapted and modified from real-world analytics testing patterns I've
+                        implemented in previous projects. It aims to verify that the
+                        <code>AnalyticsService</code> correctly coordinates report processing by mock-orchestrating data
+                        retrieval and verifying that the repository's asynchronous calls occur exactly once, ensuring
+                        zero redundant database queries.</em>
+                </p>
+
+                <h2>Theory vs Reality: My Key Learnings</h2>
+                <ol>
+                    <li class="mb-3"><strong>TDD Forces Good Design:</strong> The biggest revelation wasn't that my code
+                        had fewer bugs. It was that TDD literally forced me to write better, interface-driven
+                        architecture. If a service is impossible to mock, it's usually because it's tightly coupled to
+                        infrastructure.</li>
+
+                    <li class="mb-3"><strong>It Slows You Down to Speed You Up:</strong> Yes, writing tests first feels
+                        agonizingly slow initially. But you easily make up for that time when you don't spend three
+                        hours on a Friday afternoon tracking down a silent regression caused by a seemingly innocent
+                        refactor.</li>
+
+                    <li class="mb-3"><strong>Don't Test Implementation Details:</strong> In the beginning, I was testing
+                        if specific internal private methods were called. This meant every time I refactored my code, my
+                        tests broke. I quickly learned to test <em>behavior</em> (the outputs and side effects) rather
+                        than strict <em>implementation</em>.</li>
+                </ol>
+
+                <h2>The Dark Side: Where TDD Slows You Down</h2>
+                <p>Of course, it's not all green checkmarks and roses. Anyone who sells TDD as a flawless cure-all has
+                    probably never built a complex enterprise app with changing constraints. There are real trade-offs
+                    and pain points when forcing yourself down this path:</p>
+                <ul>
+                    <li class="mb-3"><strong>The Overhead of Mock Setup:</strong> Setting up elaborate mock interfaces
+                        (especially for systems interacting with third-party APIs or legacy databases) can sometimes
+                        result in writing three times as much test setup code as actual business logic. You end up
+                        testing your understanding of the mocking framework rather than the system's actual behavior.
+                    </li>
+                    <li class="mb-3"><strong>"Mocking Lies" and the False Sense of Security:</strong> Mocks are just
+                        assertions of how you *think* dependencies behave. If your database behavior diverges from your
+                        mock's configured response, your unit tests will happily stay green while the production
+                        environment crashes. Integration tests remain a non-negotiable reality.</li>
+                    <li class="mb-3"><strong>Over-engineering & Analysis Paralysis (this is like a default built into me
+                            tbh):
+                        </strong> Designing for absolute
+                        testability sometimes pushes you towards creating overly complex, interface-heavy structures for
+                        trivial tasks. Sometimes a simple, static utility class is all you need, but strict adherence to
+                        testability makes you split it into three interfaces and a factory pattern.</li>
+                    <li class="mb-4"><strong>A different way of thinking:
+                        </strong> Fundamentally, TDD approaches development in a way that is <i><b>differently</b></i>
+                        intuitive.
+                        Instead of thinking about what the code should do, you spend an inordinate amount of time
+                        thinking about what it should <i><b>not</b></i> do.</li>
+                </ul>
+
+                <h2>The Verdict</h2>
+                <p>Is TDD a silver bullet? No. Is it occasionally frustrating when you just want to see a prototype
+                    working? Absolutely. But once you experience the sheer dopamine rush of a massive enterprise
+                    refactor instantly followed by 500 green checkmarks in your test runner, it's very hard to go back
+                    to the old way of doing things.</p>
+
+            </div>
+        </div>
+    </main>
+
+    <hr class="border-secondary opacity-25 m-0 mt-5">
+    <footer class="py-5 text-white" style="background-color: #0a0c10;">
+        <div class="container text-center">
+            <p class="text-light opacity-75 mb-3">
+                &copy; | 2026 nrowjee.me |
+            </p>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="https://github.com/Raienryujin" target="_blank" rel="noopener noreferrer"
+                    class="text-light text-decoration-none link-secondary">
+                    <i class="bi bi-github me-1"></i> GitHub
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Prism JS for syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
+</body>
+
+</html>

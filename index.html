@@ -588,9 +588,15 @@
                                         <p class="text-secondary small mb-4">${post.description}</p>
                                     </div>
                                     <div class="p-4 pt-0">
+                                        ${post.link === '#' || post.link === '' ? `
+                                        <span class="card-link d-inline-flex align-items-center text-secondary opacity-50" style="cursor: not-allowed;" aria-label="Article coming soon: ${post.title}">
+                                            Coming Soon <i class="bi bi-clock ms-2"></i>
+                                        </span>
+                                        ` : `
                                         <a href="${post.link}" class="card-link d-inline-flex align-items-center" aria-label="Read article: ${post.title}">
                                             Read Article <i class="bi bi-arrow-right ms-2"></i>
                                         </a>
+                                        `}
                                     </div>
                                 </article>
                             </div>

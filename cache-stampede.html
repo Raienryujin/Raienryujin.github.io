@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solving Cache Stampedes with Double-Check Locking | DevLog</title>
+
+    <meta name="description"
+        content="How we achieved 6,800+ Requests Per Second and a P(95) of 0.66ms under a 1,000 VU stress test by synchronizing Kestrel minimal APIs with SemaphoreSlim and Dapper.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <!-- Code Highlight styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        .article-header {
+            padding: 8rem 0 4rem;
+            background: linear-gradient(180deg, #131722 0%, #0a0c10 100%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .article-content {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: #d1d5db;
+        }
+        .article-content h2 {
+            color: #fff;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+        }
+        .article-content h3 {
+            color: #fff;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-family: 'Outfit', sans-serif;
+        }
+        .article-content pre {
+            background-color: #1a1e29 !important;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 0.5rem;
+            padding: 1.5rem !important;
+            margin: 2rem 0;
+        }
+        .stats-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+        }
+        .stats-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #3b82f6;
+            font-family: 'Outfit', sans-serif;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+
+<body style="background-color: #0a0c10; color: #fff;">
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top custom-navbar" id="main-nav">
+        <div class="container">
+            <a class="navbar-brand text-gradient" href="index.html">Nishan Rowjee</a>
+            <div class="ms-auto">
+                <a href="index.html#blog" class="btn btn-sm btn-outline-light rounded-pill px-3">
+                    <i class="bi bi-arrow-left me-1"></i> Back to Home
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ARTICLE HEADER -->
+    <header class="article-header text-center">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <span class="badge bg-primary-subtle text-primary mb-3 px-3 py-2 fs-6 rounded-pill">Architecture</span>
+                    <h1 class="display-4 fw-bold text-white mb-4">Solving Cache Stampedes with Double-Check Locking</h1>
+                    <p class="lead text-secondary">
+                        How we achieved 6,800+ Requests Per Second and a P(95) of 0.66ms under a 1,000 VU stress test by synchronizing Kestrel minimal APIs with SemaphoreSlim and Dapper.
+                    </p>
+                    <div class="mt-4 text-secondary small d-flex align-items-center justify-content-center gap-3">
+                        <span><i class="bi bi-calendar3 me-1"></i> May 2026</span>
+                        <span><i class="bi bi-clock me-1"></i> 6 min read</span>
+                        <a href="https://github.com/Raienryujin/BiCore-HighConcurrency-PoC" target="_blank" class="text-secondary text-decoration-none hover-white">
+                            <i class="bi bi-github me-1"></i> View PoC Repo
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ARTICLE CONTENT -->
+    <main class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 article-content">
+                
+                <p>When building high-traffic Business Intelligence (BI) dashboards, the backend API is frequently tasked with serving heavy aggregate views to hundreds of users simultaneously. While caching is the standard solution, implementing it incorrectly under massive concurrent load can lead to a devastating phenomenon known as a <strong>Cache Stampede</strong>.</p>
+                
+                <h2>The Challenge: Connection Pool Exhaustion</h2>
+                <p>During peak load, if a popular cache key expires (or on cold start), multiple concurrent requests will experience a cache miss simultaneously. Instead of one request querying the database and repopulating the cache, <em>every single concurrent request</em> hits the database at the same time.</p>
+                <p>In our initial implementation, a surge of 1,000 concurrent Virtual Users (VUs) resulted in the database connection pool immediately exhausting, leading to cascading timeouts and severe thread pool starvation in ASP.NET Core.</p>
+
+                <h2>The Solution: Lookaside Cache with Double-Check Locking</h2>
+                <p>To serialize database access for identical requests, we introduced a <strong>Double-Check Locking</strong> pattern synchronized via an asynchronous semaphore (<code>SemaphoreSlim</code>). This ensures that only the <em>first</em> request performs the expensive database query, while the remaining concurrent requests wait for the cache to be populated and then read directly from memory.</p>
+
+                <p>Here is the sanitized core mechanism we used:</p>
+
+<pre><code class="language-csharp">private static readonly ConcurrentDictionary&lt;string, SemaphoreSlim&gt; _locks = new();
+
+public async Task&lt;T&gt; GetOrCreateAsync&lt;T&gt;(string cacheKey, Func&lt;Task&lt;T&gt;&gt; factory)
+{
+    // First Check: Fast path, read from cache
+    if (_cache.TryGetValue(cacheKey, out T cachedValue))
+    {
+        return cachedValue;
+    }
+
+    // Cache Miss: Acquire the lock specific to this key
+    var keyLock = _locks.GetOrAdd(cacheKey, _ =&gt; new SemaphoreSlim(1, 1));
+    await keyLock.WaitAsync();
+
+    try
+    {
+        // Second Check: The cache might have been populated while waiting for the lock
+        if (_cache.TryGetValue(cacheKey, out cachedValue))
+        {
+            return cachedValue;
+        }
+
+        // Only one thread per key executes the factory (DB Query)
+        var value = await factory();
+        
+        // Populate cache
+        _cache.Set(cacheKey, value, TimeSpan.FromMinutes(5));
+        
+        return value;
+    }
+    finally
+    {
+        keyLock.Release();
+    }
+}</code></pre>
+
+                <h2>Optimizing the Data Layer with Dapper</h2>
+                <p>To complement the locking mechanism, we swapped Entity Framework Core for <strong>Dapper</strong>. By using Dapper alongside Kestrel's Minimal APIs, we bypassed the heavy ORM overhead, enabling raw SQL execution with zero-allocation object mapping.</p>
+
+                <h2>Performance Results</h2>
+                <p>We stress-tested the updated architecture using <code>k6</code> with 1,000 concurrent VUs over 60 seconds.</p>
+
+                <div class="row g-4 my-5">
+                    <div class="col-md-4">
+                        <div class="stats-card">
+                            <div class="stats-number">6,800+</div>
+                            <div class="small text-secondary fw-bold text-uppercase tracking-wider">Reqs/Sec</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="stats-card">
+                            <div class="stats-number">0.66ms</div>
+                            <div class="small text-secondary fw-bold text-uppercase tracking-wider">P(95) Latency</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="stats-card">
+                            <div class="stats-number">100%</div>
+                            <div class="small text-secondary fw-bold text-uppercase tracking-wider">Success Rate</div>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Key Takeaways</h2>
+                <ol>
+                    <li><strong>Lock Granularity is Crucial:</strong> Locking on a per-key basis (via <code>ConcurrentDictionary&lt;string, SemaphoreSlim&gt;</code>) prevents unrelated requests from blocking each other.</li>
+                    <li><strong>Always Double-Check:</strong> The secondary cache check inside the lock is mandatory. Without it, queued threads will still execute the database query after acquiring the lock.</li>
+                    <li><strong>Disable Blocking Loggers:</strong> Under extreme load, console logging in ASP.NET Core can become a bottleneck. We stripped out unnecessary loggers in the production environment.</li>
+                </ol>
+                
+                <p class="mt-5 text-secondary">
+                    <em>For a closer look at the implementation and load-testing scripts, you can check out the <a href="https://github.com/Raienryujin/BiCore-HighConcurrency-PoC" class="text-primary text-decoration-none">Proof of Concept Repository on GitHub</a>.</em>
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <hr class="border-secondary opacity-25 m-0 mt-5">
+    <footer class="py-5 text-white" style="background-color: #0a0c10;">
+        <div class="container text-center">
+            <p class="text-light opacity-75 mb-3">
+                &copy; | 2026 nrowjee.me |
+            </p>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="https://github.com/Raienryujin" target="_blank" rel="noopener noreferrer" class="text-light text-decoration-none link-secondary">
+                    <i class="bi bi-github me-1"></i> GitHub
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Prism JS for syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
+</body>
+</html>

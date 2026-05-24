@@ -4,7 +4,7 @@
     "date": "May 2026",
     "title": "Solving Cache Stampedes with Double-Check Locking",
     "description": "How we achieved 6,800+ Requests Per Second and a P(95) of 0.66ms under a 1,000 VU stress test by synchronizing Kestrel minimal APIs with SemaphoreSlim and Dapper.",
-    "link": "https://github.com/Raienryujin/BI_Project"
+    "link": "cache-stampede.html"
   },
   {
     "category": "Architecture",

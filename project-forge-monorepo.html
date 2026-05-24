@@ -132,39 +132,17 @@
                 </ul>
 
                 <h2>The Solution: An Atomic Full-Stack Monorepo</h2>
-                <p>To eliminate these bottlenecks, I designed <strong>Project Forge</strong> — a production-grade monorepo template. It co-locates the backend, frontend, shared packages, infrastructure config, and CI/CD in a single repository.</p>
+                <p>To eliminate these bottlenecks, I designed <strong>Project Forge</strong> — a production-grade monorepo template. By co-locating the backend, frontend, shared packages, infrastructure configurations, and CI/CD pipelines in a single repository, the architecture shifts from fragmented components to a cohesive, unified system.</p>
 
-                <p>This allows for <em>atomic full-stack commits</em>: a single commit ships an ASP.NET Core API endpoint, a Next.js UI component, and a shared TypeScript type definition through one review and one merge.</p>
+                <p>This allows for <em>atomic full-stack commits</em>. Instead of coordinating multiple pull requests across different repositories, a single commit can introduce an ASP.NET Core API endpoint, a Next.js UI component, and the shared TypeScript type definition that binds them together. One pull request. One review cycle. One seamless deployment.</p>
 
-                <p>Here is the architectural structure of the workspace:</p>
-
-                <pre><code class="language-text">ProjectForge/
-├── apps/
-│   ├── api/            # ASP.NET Core 8 Minimal API
-│   │   ├── Controllers/
-│   │   ├── Models/
-│   │   ├── Services/
-│   │   ├── Program.cs
-│   │   └── Api.csproj
-│   │
-│   └── web/            # Next.js / React Frontend
-│       ├── public/
-│       ├── src/
-│       │   ├── app/
-│       │   ├── components/
-│       │   └── lib/
-│       ├── package.json
-│       └── tsconfig.json
-│
-├── packages/
-│   ├── ui/             # Shared UI component library
-│   ├── config/         # Shared ESLint, Prettier, TS configs
-│   └── types/          # Shared TypeScript type definitions
-│
-├── .github/
-│   └── workflows/
-│       └── ci.yml      # Path-filtered CI pipeline
-└── README.md</code></pre>
+                <h3>The Monorepo Philosophy</h3>
+                <p>Transitioning to a monorepo isn't just about moving files into the same folder; it requires a deliberate architectural philosophy to prevent the repository from becoming a tangled monolith. Key principles include:</p>
+                <ul>
+                    <li><strong>Unified Tooling &amp; Code Sharing:</strong> Shared logic, such as TypeScript interfaces, validation schemas, and UI components, are extracted into isolated, internal packages. This ensures the frontend and backend consume the exact same source of truth, eliminating silent integration failures.</li>
+                    <li><strong>Enforced Boundaries:</strong> By strictly separating applications (e.g., the API and the Web app) from reusable packages, the architecture maintains high cohesion and low coupling. Applications consume packages, but packages never depend on applications.</li>
+                    <li><strong>Developer Velocity:</strong> A standardized development environment means any engineer can clone the repository, run a single command, and spin up the entire distributed system locally. There's no need to piece together different services or configure complex network routing between local repositories.</li>
+                </ul>
 
                 <h2>Path-Filtered CI/CD Pipeline</h2>
                 <p>One of the biggest concerns with monorepos is that changing a single file can trigger a massive CI pipeline that rebuilds every project in the repository. To solve this, I implemented a <strong>path-filtered CI strategy</strong> using GitHub Actions.</p>

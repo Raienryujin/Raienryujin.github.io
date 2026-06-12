@@ -1,0 +1,55 @@
+const DEVLOG_DATA = {
+  "professional": [
+    {
+      "category": "Architecture",
+      "date": "May 2026",
+      "title": "Architecting an Atomic Monorepo: Project Forge",
+      "description": "How I eliminated integration drift and redundant CI builds by designing an enterprise monorepo template with path-filtered GitHub Actions and shared TypeScript contracts.",
+      "link": "project-forge-monorepo.html"
+    },
+    {
+      "category": "Architecture",
+      "date": "May 2026",
+      "title": "Solving Cache Stampedes with Double-Check Locking",
+      "description": "How I achieved 6,800+ Requests Per Second under a 1,000 VU stress test by synchronizing Kestrel minimal APIs with SemaphoreSlim and Dapper.",
+      "link": "cache-stampede.html"
+    },
+    {
+      "category": "Testing",
+      "date": "May 2026",
+      "title": "Test-Driven Development: Theory vs Practice",
+      "description": "My personal learnings and practical takeaways from applying strict TDD methodologies, xUnit, and Moq to legacy enterprise applications.",
+      "link": "tdd-theory-vs-practice.html"
+    },
+    {
+      "category": "Tooling",
+      "date": "April 2026",
+      "title": "Tesseract: MCP Codebase Graph Server",
+      "description": "How I reduced AI agent token usage by replacing heavy source file-reads with precise, lightning-fast AST graph queries.",
+      "link": "tesseract-mcp-server.html"
+    }
+  ],
+  "passion": [
+    {
+      "category": "Hardware",
+      "date": "May 2026",
+      "title": "Tinkering with the Force: Building a Custom Lightsaber",
+      "description": "How my obsession with Star Wars led me to conquer my fear of soldering irons, custom soundboards, and custom Neopixel LED wiring.",
+      "link": "lightsaber-build.html"
+    },
+    {
+      "category": "Game Dev",
+      "date": "April 2026",
+      "title": "Stepping into Unreal Engine: My Indie Game Sandbox",
+      "description": "My first deep dive into Unreal's Blueprint system, C++ mechanics, and high-fidelity physics to build a functional prototype from scratch.",
+      "link": "unreal-game-dev.html"
+    },
+    {
+      "category": "???",
+      "date": "Coming Soon",
+      "title": "A secret project...",
+      "description": "My lips are sealed. This project is under wraps... for now.",
+      "link": "#"
+    }
+  ]
+};

@@ -710,7 +710,10 @@
         });
     </script>
 
-    <!-- Script to dynamically load the DevLog posts -->
+    <!-- Devlog data (inline JS to avoid CORS issues when opening locally) -->
+    <script src="assets/data/devlog.js"></script>
+
+    <!-- Script to dynamically render the DevLog posts -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const professionalContainer = document.getElementById('devlog-professional-container');
@@ -718,13 +721,9 @@
 
             if (!professionalContainer || !passionContainer) return;
 
-            async function loadDevLog() {
+            function loadDevLog() {
                 try {
-                    const response = await fetch('assets/data/devlog.json');
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! Status: ${response.status}`);
-                    }
-                    const data = await response.json();
+                    const data = DEVLOG_DATA;
 
                     const renderPosts = (posts, container) => {
                         let htmlContent = '';
@@ -795,6 +794,9 @@
             loadDevLog();
         });
     </script>
+
+    <!-- Custom Mouse Effect -->
+    <script src="assets/js/mouse-effect.js"></script>
 </body>
 
 </html>

@@ -405,6 +405,10 @@ h6 {
   align-items: center;
   gap: 6px;
   transition: var(--transition-smooth);
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
 }
 
 .card-link:hover {

@@ -20,6 +20,7 @@
             if (el === canvas) return;
             const tag = el.tagName;
             if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'LINK') return;
+            if (el.classList.contains('modal')) return;
             const cs = getComputedStyle(el);
             if (cs.position === 'static') el.style.position = 'relative';
             if (!el.style.zIndex || el.style.zIndex === '0') el.style.zIndex = '1';

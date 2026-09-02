@@ -23,7 +23,7 @@
             if (el.classList.contains('modal')) return;
             const cs = getComputedStyle(el);
             if (cs.position === 'static') el.style.position = 'relative';
-            if (!el.style.zIndex || el.style.zIndex === '0') el.style.zIndex = '1';
+            if (cs.zIndex === 'auto' || cs.zIndex === '0') el.style.zIndex = '1';
         });
     }
 

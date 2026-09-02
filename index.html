@@ -247,8 +247,8 @@
                                 <span class="tech-pill">REST Architecture</span>
                             </div>
                             <div>
-                                <button type="button" class="card-link" data-bs-toggle="modal" data-bs-target="#biApiModal"
-                                    aria-label="View RESTful BI Core API case study">
+                                <button type="button" class="card-link" data-bs-toggle="modal"
+                                    data-bs-target="#biApiModal" aria-label="View RESTful BI Core API case study">
                                     View Case Study <i class="bi bi-arrow-up-right"></i>
                                 </button>
                             </div>
@@ -276,7 +276,8 @@
                                 <span class="tech-pill">Next.js</span>
                             </div>
                             <div>
-                                <button type="button" class="card-link" data-bs-toggle="modal" data-bs-target="#cicdModal"
+                                <button type="button" class="card-link" data-bs-toggle="modal"
+                                    data-bs-target="#cicdModal"
                                     aria-label="View Project Forge Enterprise Monorepo case study">
                                     View Case Study <i class="bi bi-arrow-up-right"></i>
                                 </button>
@@ -450,7 +451,8 @@
                                         you can review a sanitized, open-source implementation of this core
                                         architectural pattern on my GitHub.
                                     </p>
-                                    <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-primary-custom" role="button">
+                                    <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-primary-custom"
+                                        role="button">
                                         View Sanctioned PoC Repository
                                     </a>
                                 </div>
@@ -794,6 +796,31 @@
             }
 
             loadDevLog();
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navCollapse = document.getElementById('navbarContent');
+            const navToggler = document.querySelector('.navbar-toggler');
+
+            if (navCollapse && navToggler) {
+                const bsCollapse = bootstrap.Collapse.getOrCreateInstance(navCollapse, { toggle: false });
+
+                navCollapse.querySelectorAll('.nav-link').forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (navCollapse.classList.contains('show')) bsCollapse.hide();
+                    });
+                });
+
+                document.addEventListener('click', e => {
+                    if (navCollapse.classList.contains('show')
+                        && !navCollapse.contains(e.target)
+                        && !navToggler.contains(e.target)) {
+                        bsCollapse.hide();
+                    }
+                });
+            }
         });
     </script>
 

@@ -105,6 +105,25 @@ h6 {
   border-bottom: 1px solid var(--border-glass);
   padding: 0.8rem 0;
   transition: var(--transition-smooth);
+  z-index: 1030;
+  position: sticky;
+}
+
+@media (max-width: 991.98px) {
+
+  .custom-navbar .navbar-collapse.show,
+  .custom-navbar .navbar-collapse.collapsing {
+    background: rgba(11, 15, 25, 0.97);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid var(--border-glass);
+    padding: 0.5rem 0 1rem 0;
+    margin: 0 -12px;
+    padding-left: 12px;
+    padding-right: 12px;
+    position: relative;
+    z-index: 1030;
+  }
 }
 
 .custom-navbar .navbar-brand {
